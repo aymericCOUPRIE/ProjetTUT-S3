@@ -54,8 +54,7 @@ public class Plateau {
 			// vérification si la contre attaque permet le déplacement
 			// si elle est inférieur à 0 c'est impossible
 			if (deplacementPossible(contreAttaque)) {
-				plateau[x + 1][y] = plateau[x][y];
-				plateau[x][y] = null;
+				pousserEst(unJeton, i-1, y);
 			}
 		}
 		// deplacemnt vers le sud
@@ -76,7 +75,7 @@ public class Plateau {
 			}
 
 		}
-		// deplacemnt vers le ouest
+		// deplacement vers le ouest
 		if (newPosition == Orientation.SUD) {
 			int i = y;
 			i--;
@@ -93,7 +92,7 @@ public class Plateau {
 				plateau[x][y] = null;
 			}
 		}
-		// deplacemnt vers le est
+		// deplacement vers le nord
 		if (newPosition == Orientation.NORD) {
 			int i = y;
 			i++;
@@ -102,6 +101,7 @@ public class Plateau {
 					contreAttaque += plateau[x][i].veriforientation(newPosition);
 					i++;
 				} else {
+					
 					break;
 				}
 			}
@@ -113,11 +113,27 @@ public class Plateau {
 
 	}
 
+	public void pousserEst(Jeton unJeton, int xMax, int y) {
+		System.out.println("je suis xMax "+xMax);
+		if (xMax >= taillePlateau-1) {
+			System.out.println("il faudras récupére le pion qui en dehors du plateau");
+			xMax--;
+		}
+
+		while (plateau[xMax][y] != unJeton) {
+			plateau[xMax + 1][y] = plateau[xMax][y];
+			System.out.println("je déplace " + plateau[xMax][y] + "à la position " + (xMax + 1) + " " + y);
+			xMax--;
+		}
+		plateau[xMax][y] = null;
+
+	}
+
 	public boolean deplacementPossible(int contre) {
 		if (contre >= 0) {
 			return true;
 		} else {
-			System.out.println("Déplacement impossible");
+			System.out.println("Déplacement impossible car contre = " + contre);
 			return false;
 		}
 	}
