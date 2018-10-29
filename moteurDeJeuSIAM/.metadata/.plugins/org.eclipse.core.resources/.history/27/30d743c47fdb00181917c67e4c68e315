@@ -1,0 +1,16 @@
+package moteur;
+
+public class Pion extends Jeton {
+	
+	public Pion() {
+		
+	}
+
+	@Override
+	public String toString() {
+		return "je suis un pion";
+	}
+	
+	
+
+}

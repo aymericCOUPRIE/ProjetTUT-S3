@@ -1,0 +1,16 @@
+package moteur;
+
+public class Rocher extends Jeton {
+	
+	public Rocher() {
+		
+	}
+
+	@Override
+	public String toString() {
+		return "Je suis un Rocher ";
+	}
+	
+	
+
+}

@@ -1,0 +1,9 @@
+package moteur;
+
+public abstract class Jeton {
+	
+	public Jeton() {
+		
+	}
+
+}

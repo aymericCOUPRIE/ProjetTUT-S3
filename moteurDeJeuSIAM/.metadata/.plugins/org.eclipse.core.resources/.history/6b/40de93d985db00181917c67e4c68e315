@@ -1,0 +1,10 @@
+package moteur;
+
+public enum Orientation {
+	
+	NORD,
+	SUD,
+	OUEST,
+	EST;
+
+}

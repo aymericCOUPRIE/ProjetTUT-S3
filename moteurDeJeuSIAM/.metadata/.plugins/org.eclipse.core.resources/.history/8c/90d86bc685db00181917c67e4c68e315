@@ -1,0 +1,23 @@
+package moteur;
+
+public class Pion extends Jeton {
+	String nom;
+	Orientation regard;
+
+	public Pion(String nom,Orientation regard) {
+		this.nom = nom;
+		this.regard = regard;
+	}
+
+	@Override
+	public String toString() {
+		return "Je suis " + nom;
+	}
+
+	@Override
+	public int veriforientation(Orientation regard) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+}

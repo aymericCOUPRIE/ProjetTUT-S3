@@ -1,0 +1,53 @@
+package moteur;
+
+public class Plateau {
+
+	Object[][] plateau;
+	int taillePlateau;
+
+	public Plateau(int taillePlateau) {
+		super();
+		plateau = new Jeton[taillePlateau][taillePlateau];
+		this.taillePlateau = taillePlateau;
+	}
+
+	public void ajouterJeton(Jeton unJeton, int x, int y) {
+
+		plateau[x][y] = unJeton;
+	}
+
+	public void afficherPlateau() {
+		for (int i = 0; i < taillePlateau; i++) {
+			for (int j = 0; j < taillePlateau; j++) {
+				if (plateau[i][j] != null) {
+					System.out.println(plateau[i][j] + " à la position " + i + " " + j);
+				}
+
+			}
+		}
+	}
+
+	public void deplacementNord(Jeton unJeton) {
+		int[] coordonne = recherchePosition(unJeton);
+		int x= coordonne[0],y= coordonne[1];
+		plateau[x+1][y] = plateau[x][y];
+		plateau[x][y] = null;
+		System.out.println("je suis à la position " + x + " " + y);
+		
+	}
+
+	public int[] recherchePosition(Jeton unJeton) {
+		int[] coordonne = new int[2];
+		for (int x = 0; x < taillePlateau; x++) {
+			for (int y = 0; y < taillePlateau; y++) {
+				if (plateau[x][y] == unJeton) {
+					coordonne[0] = x;
+					coordonne[1] = y;
+					return coordonne;
+				}
+			}
+		}
+		return coordonne;
+	}
+
+}

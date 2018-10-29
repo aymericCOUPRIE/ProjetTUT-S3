@@ -1,0 +1,45 @@
+package moteur;
+
+public class Plateau {
+
+	Object[][] plateau;
+	int taillePlateau;
+
+	public Plateau(int taillePlateau) {
+		super();
+		plateau = new Jeton[taillePlateau][taillePlateau];
+		this.taillePlateau = taillePlateau;
+	}
+
+	public void ajouterJeton(Jeton unJeton, int x, int y) {
+
+		plateau[x][y] = unJeton;
+	}
+
+	public void afficherPlateau() {
+		for (int i = 0; i < taillePlateau; i++) {
+			for (int j = 0; j < taillePlateau; j++) {
+				if (plateau[i][j] != null) {
+					System.out.println(plateau[i][j] + " à la position " + i + " " + j);
+				}
+
+			}
+		}
+
+	}
+
+	public boolean deplacementNord(Jeton unJeton) {
+		for (int i = 0; i < taillePlateau; i++) {
+			for (int j = 0; j < taillePlateau; j++) {
+				if(plateau[i][j] == unJeton) {
+					plateau[i+1][j]=plateau[i][j];
+					System.out.println("je suis à la position "+i+" "+j);
+					return true
+				}
+			}
+		}
+		return false;
+
+	}
+
+}

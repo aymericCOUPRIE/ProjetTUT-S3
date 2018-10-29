@@ -1,0 +1,33 @@
+package moteur;
+
+public class Plateau {
+	
+	Object[][] plateau;
+	int taillePlateau;
+
+	public Plateau(int taillePlateau) {
+		super();
+		plateau = new Jeton[taillePlateau][taillePlateau];
+		this.taillePlateau = taillePlateau;
+	}
+	
+	public void ajouterJeton(Jeton unJeton, int x, int y) {
+		
+		plateau[x][y]=unJeton;
+	}
+	
+	public void afficherPlateau() {
+		for(int i=0;i<taillePlateau;i++){
+			for(int j=0;j<taillePlateau;j++){
+				if(plateau[i][j]!=null) {
+					System.out.println(plateau[i][j]+ "position "+i+" "+j);
+				}
+				
+			}
+		}
+		
+	}
+	
+	
+
+}

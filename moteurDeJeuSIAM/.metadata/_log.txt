@@ -1,0 +1,67 @@
+!SESSION 2018-10-29 14:19:20.302 -----------------------------------------------
+eclipse.buildId=4.9.0.I20180906-0745
+java.version=1.8.0_191
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=fr_FR
+Framework arguments:  -product org.eclipse.epp.package.java.product
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product org.eclipse.epp.package.java.product
+
+!ENTRY org.eclipse.egit.ui 2 0 2018-10-29 14:20:50.807
+!MESSAGE Warning: The environment variable HOME is not set. The following directory will be used to store the Git
+user global configuration and to define the default location to store repositories: 'C:\Users\Glenn'. If this is
+not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
+EGit might behave differently since they see different configuration options.
+This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+
+!ENTRY org.eclipse.jdt.ui 4 10001 2018-10-29 15:06:29.005
+!MESSAGE Internal Error
+!STACK 1
+Java Model Exception: Java Model Status [Pion(String) [in Pion [in [Working copy] Pion.java [in moteur [in src [in moteurJeu]]]]] does not exist]
+	at org.eclipse.jdt.internal.core.JavaElement.newNotPresentException(JavaElement.java:573)
+	at org.eclipse.jdt.internal.core.JavaElement.openWhenClosed(JavaElement.java:607)
+	at org.eclipse.jdt.internal.core.JavaElement.getElementInfo(JavaElement.java:326)
+	at org.eclipse.jdt.internal.core.JavaElement.getElementInfo(JavaElement.java:312)
+	at org.eclipse.jdt.internal.core.SourceRefElement.getSourceRange(SourceRefElement.java:233)
+	at org.eclipse.jdt.internal.core.Member.getJavadocRange(Member.java:301)
+	at org.eclipse.jdt.internal.ui.text.javadoc.JavadocContentAccess2.getHTMLContentFromSource(JavadocContentAccess2.java:661)
+	at org.eclipse.jdt.internal.ui.text.javadoc.JavadocContentAccess2.getHTMLContent(JavadocContentAccess2.java:537)
+	at org.eclipse.jdt.internal.ui.text.java.hover.JavadocHover.getHoverInfo(JavadocHover.java:760)
+	at org.eclipse.jdt.internal.ui.text.java.hover.JavadocHover.internalGetHoverInfo(JavadocHover.java:678)
+	at org.eclipse.jdt.internal.ui.text.java.hover.JavadocHover.getHoverInfo2(JavadocHover.java:670)
+	at org.eclipse.jdt.internal.ui.text.java.hover.BestMatchHover.getHoverInfo2(BestMatchHover.java:167)
+	at org.eclipse.jdt.internal.ui.text.java.hover.BestMatchHover.getHoverInfo2(BestMatchHover.java:133)
+	at org.eclipse.jdt.internal.ui.text.java.hover.JavaEditorTextHoverProxy.getHoverInfo2(JavaEditorTextHoverProxy.java:89)
+	at org.eclipse.jface.text.TextViewerHoverManager$4.run(TextViewerHoverManager.java:169)
+!SUBENTRY 1 org.eclipse.jdt.core 4 969 2018-10-29 15:06:29.008
+!MESSAGE Pion(String) [in Pion [in [Working copy] Pion.java [in moteur [in src [in moteurJeu]]]]] does not exist
+
+!ENTRY org.eclipse.recommenders.types.rcp 1 4 2018-10-29 15:12:04.799
+!MESSAGE Full project indexing required:
+  [+] C:\Program Files\Java\jre1.8.0_191\lib\charsets.jar
+  [+] C:\Program Files\Java\jre1.8.0_191\lib\ext\access-bridge-64.jar
+  [+] C:\Program Files\Java\jre1.8.0_191\lib\ext\cldrdata.jar
+  [+] C:\Program Files\Java\jre1.8.0_191\lib\ext\dnsns.jar
+  [+] C:\Program Files\Java\jre1.8.0_191\lib\ext\jaccess.jar
+  [+] C:\Program Files\Java\jre1.8.0_191\lib\ext\jfxrt.jar
+  [+] C:\Program Files\Java\jre1.8.0_191\lib\ext\localedata.jar
+  [+] C:\Program Files\Java\jre1.8.0_191\lib\ext\nashorn.jar
+  [+] C:\Program Files\Java\jre1.8.0_191\lib\ext\sunec.jar
+  [+] C:\Program Files\Java\jre1.8.0_191\lib\ext\sunjce_provider.jar
+  [+] C:\Program Files\Java\jre1.8.0_191\lib\ext\sunmscapi.jar
+  [+] C:\Program Files\Java\jre1.8.0_191\lib\ext\sunpkcs11.jar
+  [+] C:\Program Files\Java\jre1.8.0_191\lib\ext\zipfs.jar
+  [+] C:\Program Files\Java\jre1.8.0_191\lib\jce.jar
+  [+] C:\Program Files\Java\jre1.8.0_191\lib\jfr.jar
+  [+] C:\Program Files\Java\jre1.8.0_191\lib\jsse.jar
+  [+] C:\Program Files\Java\jre1.8.0_191\lib\resources.jar
+  [+] C:\Program Files\Java\jre1.8.0_191\lib\rt.jar
+
+!STACK 0
+org.eclipse.recommenders.utils.Logs$LogTraceException
+	at org.eclipse.recommenders.utils.Logs$LogTraceException.newTrace(Logs.java:381)
+	at org.eclipse.recommenders.utils.Logs.log(Logs.java:134)
+	at org.eclipse.recommenders.internal.types.rcp.ProjectTypesIndex.needsRebuild(ProjectTypesIndex.java:169)
+	at org.eclipse.recommenders.internal.types.rcp.ProjectTypesIndex.startUp(ProjectTypesIndex.java:122)
+	at com.google.common.util.concurrent.AbstractIdleService$2$1.run(AbstractIdleService.java:54)
+	at com.google.common.util.concurrent.Callables$3.run(Callables.java:93)
+	at java.lang.Thread.run(Unknown Source)

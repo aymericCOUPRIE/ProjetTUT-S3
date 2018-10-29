@@ -1,0 +1,10 @@
+package moteur;
+
+public class UneParie {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

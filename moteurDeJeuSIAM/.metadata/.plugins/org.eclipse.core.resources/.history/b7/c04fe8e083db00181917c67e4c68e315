@@ -1,0 +1,17 @@
+package moteur;
+
+public class Pion extends Jeton {
+	String nom;
+	
+	public Pion(String nom) {
+		this.nom = nom;
+	}
+
+	@Override
+	public String toString() {
+		return "Je suis "+nom;
+	}
+	
+	
+
+}
