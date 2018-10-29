@@ -112,7 +112,7 @@ public class Plateau {
 		}
 
 	}
-
+// fonction pousser
 	public void pousserEst(Jeton unJeton, int xMax, int y) {
 		System.out.println("je suis xMax "+xMax);
 		if (xMax >= taillePlateau-1) {
