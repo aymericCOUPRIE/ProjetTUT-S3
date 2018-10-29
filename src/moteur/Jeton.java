@@ -7,8 +7,6 @@ public abstract class Jeton {
 	}
 	
 	public abstract int veriforientation(Orientation regard);
-	public void teste() {
-		
-	}
+	
 
 }

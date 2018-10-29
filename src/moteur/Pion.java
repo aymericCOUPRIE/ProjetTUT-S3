@@ -11,7 +11,7 @@ public class Pion extends Jeton {
 
 	@Override
 	public String toString() {
-		return "Je suis " + nom;
+		return "Je suis " + nom+" et je regard vers "+regard;
 	}
 
 	@Override

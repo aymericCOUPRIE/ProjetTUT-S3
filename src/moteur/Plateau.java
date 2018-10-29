@@ -28,25 +28,31 @@ public class Plateau {
 	}
 
 	public void deplacement(Jeton unJeton, Orientation newPosition) {
-		//On recupere les coordonne du jeton
+		// On recupere les coordonne du jeton
 		int[] coordonne = recherchePosition(unJeton);
 		int x = coordonne[0], y = coordonne[1];
 		// Variable qui vas servir a vérifier si le déplacment est possible
 		int contreAttaque = 1;
-		
+
 		// deplacemnt vers le nord
 		if (newPosition == Orientation.EST) {
 			int i = x;
 			i++;
-			//tant qu'il y a un jeton est qu'on ne déplace pas la taille du plateau
-			while ((plateau[i][y] != null) && (i < taillePlateau)) {
-				//additionne la valeur de retour du jeton 
-				// 0 si il n'a pas d'impacte 1 si il est dans notre sens et -1 si il est contre nous
-				contreAttaque += plateau[i][y].veriforientation(newPosition);
-				i++;
+			// tant qu'il y a un jeton est qu'on ne déplace pas la taille du plateau
+			while (i < taillePlateau) {
+
+				// additionne la valeur de retour du jeton
+				// 0 si il n'a pas d'impacte 1 si il est dans notre sens et -1 si il est contre
+				// nous
+				if (plateau[i][y] != null) {
+					contreAttaque += plateau[i][y].veriforientation(newPosition);
+					i++;
+				} else {
+					break;
+				}
 			}
-			//vérification si la contre attaque permet le déplacement
-			//si elle est inférieur à 0 c'est impossible
+			// vérification si la contre attaque permet le déplacement
+			// si elle est inférieur à 0 c'est impossible
 			if (deplacementPossible(contreAttaque)) {
 				plateau[x + 1][y] = plateau[x][y];
 				plateau[x][y] = null;
@@ -56,9 +62,13 @@ public class Plateau {
 		if (newPosition == Orientation.OUEST) {
 			int i = x;
 			i--;
-			while ((plateau[i][y] != null) && (i >= 0)) {
-				contreAttaque += plateau[i][y].veriforientation(newPosition);
-				i--;
+			while (i >= 0) {
+				if (plateau[i][y] != null) {
+					contreAttaque += plateau[i][y].veriforientation(newPosition);
+					i--;
+				} else {
+					break;
+				}
 			}
 			if (deplacementPossible(contreAttaque)) {
 				plateau[x - 1][y] = plateau[x][y];
@@ -66,33 +76,41 @@ public class Plateau {
 			}
 
 		}
-		// deplacemnt vers le  ouest
+		// deplacemnt vers le ouest
 		if (newPosition == Orientation.SUD) {
 			int i = y;
 			i--;
-			while ((plateau[i][y] != null) && (i >= 0)) {
-				contreAttaque += plateau[i][y].veriforientation(newPosition);
-				i--;
+			while (i >= 0) {
+				if (plateau[x][i] != null) {
+					contreAttaque += plateau[x][i].veriforientation(newPosition);
+					i--;
+				} else {
+					break;
+				}
 			}
 			if (deplacementPossible(contreAttaque)) {
 				plateau[x][y - 1] = plateau[x][y];
 				plateau[x][y] = null;
 			}
 		}
-		// deplacemnt vers le  est
+		// deplacemnt vers le est
 		if (newPosition == Orientation.NORD) {
 			int i = y;
 			i++;
-			while ((plateau[i][y] != null) && (i < taillePlateau)) {
-				contreAttaque += plateau[i][y].veriforientation(newPosition);
-				i++;
+			while (i < taillePlateau) {
+				if (plateau[x][i] != null) {
+					contreAttaque += plateau[x][i].veriforientation(newPosition);
+					i++;
+				} else {
+					break;
+				}
 			}
 			if (deplacementPossible(contreAttaque)) {
 				plateau[x][y + 1] = plateau[x][y];
 				plateau[x][y] = null;
 			}
 		}
-		
+
 	}
 
 	public boolean deplacementPossible(int contre) {
