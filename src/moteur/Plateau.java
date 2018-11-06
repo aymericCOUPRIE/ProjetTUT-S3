@@ -11,9 +11,14 @@ public class Plateau {
 		this.taillePlateau = taillePlateau;
 	}
 
-	public void ajouterJeton(Jeton unJeton, int x, int y) {
-
-		plateau[x][y] = unJeton;
+	public void ajouterJeton(Jeton unJeton, int x, int y) {//,Orientation uneOrientation) {
+//		if(x==0 || y==0 ||x ==taillePlateau+1 ||y == taillePlateau-1) {
+			plateau[x][y] = unJeton;
+			//deplacement(unJeton, uneOrientation);
+//		}else {
+//			System.err.println("le pion n'est pas placé a l'extérieur du plateau");
+//		}
+		
 	}
 
 	public void afficherPlateau() {
@@ -70,8 +75,7 @@ public class Plateau {
 				}
 			}
 			if (deplacementPossible(contreAttaque)) {
-				plateau[x - 1][y] = plateau[x][y];
-				plateau[x][y] = null;
+				pousserOuest(unJeton, i+1, y);
 			}
 
 		}
@@ -88,8 +92,7 @@ public class Plateau {
 				}
 			}
 			if (deplacementPossible(contreAttaque)) {
-				plateau[x][y - 1] = plateau[x][y];
-				plateau[x][y] = null;
+				pousserSud(unJeton, x, i+1);
 			}
 		}
 		// deplacement vers le nord
@@ -106,15 +109,13 @@ public class Plateau {
 				}
 			}
 			if (deplacementPossible(contreAttaque)) {
-				plateau[x][y + 1] = plateau[x][y];
-				plateau[x][y] = null;
+				pousserNord(unJeton, x, i-1);
 			}
 		}
 
 	}
 // fonction pousser
 	public void pousserEst(Jeton unJeton, int xMax, int y) {
-		System.out.println("je suis xMax "+xMax);
 		if (xMax >= taillePlateau-1) {
 			System.out.println("il faudras récupére le pion qui en dehors du plateau");
 			xMax--;
@@ -122,11 +123,54 @@ public class Plateau {
 
 		while (plateau[xMax][y] != unJeton) {
 			plateau[xMax + 1][y] = plateau[xMax][y];
-			System.out.println("je déplace " + plateau[xMax][y] + "à la position " + (xMax + 1) + " " + y);
 			xMax--;
 		}
+		plateau[xMax + 1][y] = plateau[xMax][y];
 		plateau[xMax][y] = null;
 
+	}
+	
+	public void pousserOuest(Jeton unJeton, int xMin, int y) {
+		if (xMin <= 0) {
+			System.out.println("il faudras récupére le pion qui en dehors du plateau");
+			xMin++;
+		}
+
+		while (plateau[xMin][y] != unJeton) {
+			plateau[xMin - 1][y] = plateau[xMin][y];
+			xMin++;
+		}
+		plateau[xMin - 1][y] = plateau[xMin][y];
+		plateau[xMin][y] = null;
+
+	}
+	
+	public void pousserNord(Jeton unJeton, int x, int yMax) {
+		if (yMax >= taillePlateau-1) {
+			System.out.println("il faudras récupére le pion qui en dehors du plateau");
+			yMax--;
+		}
+
+		while (plateau[x][yMax] != unJeton) {
+			plateau[x][yMax + 1] = plateau[x][yMax];
+			yMax--;
+		}
+		plateau[x][yMax + 1] = plateau[x][yMax];
+		plateau[x][yMax] = null;
+	}
+	
+	public void pousserSud(Jeton unJeton, int x, int yMin) {
+		if (yMin <= 0) {
+			System.out.println("il faudras récupére le pion qui est en dehors du plateau");
+			yMin++;
+		}
+
+		while (plateau[x][yMin] != unJeton) {
+			plateau[x][yMin - 1] = plateau[x][yMin];
+			yMin++;
+		}
+		plateau[x][yMin - 1] = plateau[x][yMin];
+		plateau[x][yMin] = null;
 	}
 
 	public boolean deplacementPossible(int contre) {
@@ -135,6 +179,14 @@ public class Plateau {
 		} else {
 			System.out.println("Déplacement impossible car contre = " + contre);
 			return false;
+		}
+	}
+	
+	public void sortiePlateau(Jeton unJeton) {
+		if(unJeton instanceof Rocher) {
+			System.out.println("Vous avez gg");
+		}else {
+			
 		}
 	}
 
