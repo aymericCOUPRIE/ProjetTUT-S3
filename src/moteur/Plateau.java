@@ -53,16 +53,16 @@ public class Plateau {
 
 	public void suppresionPionDehors() {
 		for (int i = 0; i < taillePlateau + 2; i++) {
-			if (plateau[0][i] != null) {
+			if (plateau[0][i] != null && !(plateau[0][i] instanceof Out)) {
 				sortiePlateau(plateau[0][i]);
 			}
-			if (plateau[i][0] != null) {
+			if (plateau[i][0] != null && !(plateau[i][0] instanceof Out) ) {
 				sortiePlateau(plateau[i][0]);
 			}
-			if (plateau[taillePlateau + 1][i] != null) {
+			if (plateau[taillePlateau + 1][i] != null && !(plateau[taillePlateau + 1][i] instanceof Out) ) {
 				sortiePlateau(plateau[taillePlateau + 1][i]);
 			}
-			if (plateau[i][taillePlateau + 1] != null) {
+			if (plateau[i][taillePlateau + 1] != null && !(plateau[i][taillePlateau + 1] instanceof Out) ) {
 				sortiePlateau(plateau[i][taillePlateau + 1]);
 			}
 		}
@@ -148,7 +148,7 @@ public class Plateau {
 				pousserNord(unJeton, x, i - 1);
 			}
 		}
-
+		suppresionPionDehors();
 	}
 
 // fonction pousser
@@ -203,7 +203,7 @@ public class Plateau {
 		if (unJeton instanceof Rocher) {
 			System.out.println("Vous avez gg");
 		} else {
-			System.out.println("vous recpere un pion dans votre inventaire"+unJeton);
+			System.out.println("vous recupere un pion dans votre inventaire"+unJeton);
 		}
 	}
 

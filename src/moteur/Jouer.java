@@ -15,7 +15,6 @@ public class Jouer {
 		unPlateau.ajouterPion(rhinoceros2, 1,0,Orientation.NORD);
 		unPlateau.afficherPlateau();
 		
-		unPlateau.afficherPlateau();
 		System.out.println("\n\n");
 		//unPlateau.deplacement(elephant,Orientation.NORD);
 		//unPlateau.deplacement(rhinoceros2, Orientation.SUD);
