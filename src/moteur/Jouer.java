@@ -8,16 +8,19 @@ public class Jouer {
 		//Pion rhinoceros = new Pion("rhino",Orientation.NORD);
 		Pion rhinoceros2 = new Pion("rhino adulte",Orientation.SUD);
 		Rocher unRocher = new Rocher("cailloux");
-		unPlateau.ajouterJeton(elephant, 1, 1);
+		unPlateau.ajouterRocher(unRocher, 1, 2);
+		unPlateau.ajouterPion(elephant, 0, 1,Orientation.EST);
+		unPlateau.afficherPlateau();
 		//unPlateau.ajouterJeton(rhinoceros, 1,0);
-		unPlateau.ajouterJeton(rhinoceros2, 1,3);
-		unPlateau.ajouterJeton(unRocher, 1, 2);
+		unPlateau.ajouterPion(rhinoceros2, 1,0,Orientation.NORD);
+		unPlateau.afficherPlateau();
+		
 		unPlateau.afficherPlateau();
 		System.out.println("\n\n");
 		//unPlateau.deplacement(elephant,Orientation.NORD);
-		unPlateau.deplacement(rhinoceros2, Orientation.SUD);
-		unPlateau.deplacement(rhinoceros2, Orientation.SUD);
-		unPlateau.afficherPlateau();
+		//unPlateau.deplacement(rhinoceros2, Orientation.SUD);
+		//unPlateau.deplacement(rhinoceros2, Orientation.SUD);
+		
 		
 	}
 
