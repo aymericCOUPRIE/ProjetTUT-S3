@@ -4,35 +4,48 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Joueur {
-	private List<Pion> lesPions;
+	private List<Pion> lesPionsEnMain;
+	private List<Pion> lesPionsSurPlateau;
 	private String nom;
 	
 	public Joueur(String nom) {
 		super();
 		this.nom = nom;
-		lesPions = new ArrayList<Pion>();
+		lesPionsEnMain = new ArrayList<Pion>();
+		lesPionsSurPlateau= new ArrayList<Pion>();
 		creationPion();
 	}
 	
 	public void creationPion() {
 		for(int i=0;i<5;i++) {
-			Pion unPion = new Pion(nom, null);
-			lesPions.add(unPion);
+			Pion unPion = new Pion(nom, null,i);
+			lesPionsEnMain.add(unPion);
 		}
 	}
 	
-	public void recuperPion(Pion unPion) {
-		lesPions.add(unPion);
+	public void recuperPionMain(Pion unPion) {
+		lesPionsEnMain.add(unPion);
 	}
 	
-	public Pion sortirPion() {
-		if(lesPions.size()==0) {
+	public Pion posserPionPlateau() {
+		if(lesPionsEnMain.size()==0) {
 			System.err.println("Vous n'avez plus de pion");
 			return null;
 		}else {
-			Pion unPion=lesPions.get(0);
-			lesPions.remove(0);
+			Pion unPion=lesPionsEnMain.get(0);
+			lesPionsSurPlateau.add(unPion);
+			lesPionsEnMain.remove(0);
 			return unPion;
+		}
+	}
+
+	public String getNom() {
+		return nom;
+	}
+	
+	public void affichePionPlateau() {
+		for(Pion unPion:lesPionsSurPlateau) {
+			System.out.println("- "+unPion );
 		}
 	}
 	

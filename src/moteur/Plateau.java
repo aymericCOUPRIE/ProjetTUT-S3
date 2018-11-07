@@ -4,6 +4,7 @@ public class Plateau {
 
 	Jeton[][] plateau;
 	int taillePlateau;
+	Pion pionARecupere;
 
 	public Plateau(int taillePlateau) {
 		super();
@@ -46,7 +47,6 @@ public class Plateau {
 				if (plateau[i][j] != null && !(plateau[i][j] instanceof Out)) {
 					System.out.println(plateau[i][j] + " à la position " + i + " " + j);
 				}
-
 			}
 		}
 	}
@@ -70,6 +70,7 @@ public class Plateau {
 	}
 
 	public void deplacement(Jeton unJeton, Orientation newPosition) {
+		pionARecupere = null;
 		// On recupere les coordonne du jeton
 		int[] coordonne = recherchePosition(unJeton);
 		int x = coordonne[0], y = coordonne[1];
@@ -203,7 +204,16 @@ public class Plateau {
 		if (unJeton instanceof Rocher) {
 			System.out.println("Vous avez gg");
 		} else {
+			pionARecupere=(Pion)unJeton;
 			System.out.println("vous recupere un pion dans votre inventaire"+unJeton);
+		}
+	}
+	
+	public Pion recuperePionDehorsPlateau() {
+		if(pionARecupere!=null) {
+			return pionARecupere;
+		}else {
+			return null;
 		}
 	}
 
