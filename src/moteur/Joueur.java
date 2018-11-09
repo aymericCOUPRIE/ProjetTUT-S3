@@ -39,6 +39,9 @@ public class Joueur {
 		}
 	}
 
+	public Pion pionDeplacer() {
+		return lesPionsSurPlateau.get(0);
+	}
 	public String getNom() {
 		return nom;
 	}

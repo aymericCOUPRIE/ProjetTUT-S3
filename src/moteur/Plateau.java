@@ -5,9 +5,11 @@ public class Plateau {
 	Jeton[][] plateau;
 	int taillePlateau;
 	Pion pionARecupere;
+	boolean finJeu;
 
 	public Plateau(int taillePlateau) {
 		super();
+		finJeu = false;
 		plateau = new Jeton[taillePlateau + 2][taillePlateau + 2];
 		this.taillePlateau = taillePlateau;
 		remplissageOut();
@@ -69,7 +71,7 @@ public class Plateau {
 		remplissageOut();
 	}
 
-	public void deplacement(Jeton unJeton, Orientation newPosition) {
+	public void deplacement(Jeton unJeton, Orientation directionDeplacement) {
 		pionARecupere = null;
 		// On recupere les coordonne du jeton
 		int[] coordonne = recherchePosition(unJeton);
@@ -78,7 +80,7 @@ public class Plateau {
 		int contreAttaque = 1;
 
 		// deplacemnt vers le nord
-		if (newPosition == Orientation.EST) {
+		if (directionDeplacement == Orientation.EST) {
 			int i = x;
 			i++;
 			// tant qu'il y a un jeton est qu'on ne déplace pas la taille du plateau
@@ -87,7 +89,7 @@ public class Plateau {
 				// 0 si il n'a pas d'impacte 1 si il est dans notre sens et -1 si il est contre
 				// nous
 				if (plateau[i][y] != null) {
-					contreAttaque += plateau[i][y].veriforientation(newPosition);
+					contreAttaque += plateau[i][y].veriforientation(directionDeplacement);
 					i++;
 				} else {
 					break;
@@ -100,12 +102,12 @@ public class Plateau {
 			}
 		}
 		// deplacemnt vers le sud
-		if (newPosition == Orientation.OUEST) {
+		if (directionDeplacement == Orientation.OUEST) {
 			int i = x;
 			i--;
 			while (i >= 1) {
 				if (plateau[i][y] != null) {
-					contreAttaque += plateau[i][y].veriforientation(newPosition);
+					contreAttaque += plateau[i][y].veriforientation(directionDeplacement);
 					i--;
 				} else {
 					break;
@@ -114,15 +116,14 @@ public class Plateau {
 			if (deplacementPossible(contreAttaque)) {
 				pousserOuest(unJeton, i + 1, y);
 			}
-
 		}
 		// deplacement vers le ouest
-		if (newPosition == Orientation.SUD) {
+		if (directionDeplacement == Orientation.SUD) {
 			int i = y;
 			i--;
 			while (i >= 1) {
 				if (plateau[x][i] != null) {
-					contreAttaque += plateau[x][i].veriforientation(newPosition);
+					contreAttaque += plateau[x][i].veriforientation(directionDeplacement);
 					i--;
 				} else {
 					break;
@@ -133,12 +134,12 @@ public class Plateau {
 			}
 		}
 		// deplacement vers le nord
-		if (newPosition == Orientation.NORD) {
+		if (directionDeplacement == Orientation.NORD) {
 			int i = y;
 			i++;
 			while (i < taillePlateau+1) {
 				if (plateau[x][i] != null) {
-					contreAttaque += plateau[x][i].veriforientation(newPosition);
+					contreAttaque += plateau[x][i].veriforientation(directionDeplacement);
 					i++;
 				} else {
 
@@ -203,10 +204,15 @@ public class Plateau {
 	public void sortiePlateau(Jeton unJeton) {
 		if (unJeton instanceof Rocher) {
 			System.out.println("Vous avez gg");
+			finJeu = true;
 		} else {
 			pionARecupere=(Pion)unJeton;
 			System.out.println("vous recupere un pion dans votre inventaire"+unJeton);
 		}
+	}
+	
+	public boolean isFinJeu() {
+		return finJeu;
 	}
 	
 	public Pion recuperePionDehorsPlateau() {
@@ -230,5 +236,4 @@ public class Plateau {
 		}
 		return coordonne;
 	}
-
 }
