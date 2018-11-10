@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Plateau taille="5">
+  <Case type="Out">
+    <X>0</X>
+    <Y>0</Y>
+  </Case>
+  <Case type="Out">
+    <X>0</X>
+    <Y>1</Y>
+  </Case>
+  <Case type="Out">
+    <X>0</X>
+    <Y>2</Y>
+  </Case>
+  <Case type="Out">
+    <X>0</X>
+    <Y>3</Y>
+  </Case>
+  <Case type="Out">
+    <X>0</X>
+    <Y>4</Y>
+  </Case>
+  <Case type="Out">
+    <X>0</X>
+    <Y>5</Y>
+  </Case>
+  <Case type="Out">
+    <X>0</X>
+    <Y>6</Y>
+  </Case>
+  <Case type="Out">
+    <X>1</X>
+    <Y>0</Y>
+  </Case>
+  <Case type="In">
+    <X>1</X>
+    <Y>1</Y>
+  </Case>
+  <Case type="In">
+    <X>1</X>
+    <Y>2</Y>
+  </Case>
+  <Case type="In">
+    <X>1</X>
+    <Y>3</Y>
+  </Case>
+  <Case type="In">
+    <X>1</X>
+    <Y>4</Y>
+  </Case>
+  <Case type="In">
+    <X>1</X>
+    <Y>5</Y>
+  </Case>
+  <Case type="Out">
+    <X>1</X>
+    <Y>6</Y>
+  </Case>
+  <Case type="Out">
+    <X>2</X>
+    <Y>0</Y>
+  </Case>
+  <Case type="In">
+    <X>2</X>
+    <Y>1</Y>
+  </Case>
+  <Case type="In">
+    <X>2</X>
+    <Y>2</Y>
+  </Case>
+  <Case type="Rocher">
+    <X>2</X>
+    <Y>3</Y>
+  </Case>
+  <Case type="In">
+    <X>2</X>
+    <Y>4</Y>
+  </Case>
+  <Case type="In">
+    <X>2</X>
+    <Y>5</Y>
+  </Case>
+  <Case type="Out">
+    <X>2</X>
+    <Y>6</Y>
+  </Case>
+  <Case type="Out">
+    <X>3</X>
+    <Y>0</Y>
+  </Case>
+  <Case type="In">
+    <X>3</X>
+    <Y>1</Y>
+  </Case>
+  <Case type="In">
+    <X>3</X>
+    <Y>2</Y>
+  </Case>
+  <Case type="Rocher">
+    <X>3</X>
+    <Y>3</Y>
+  </Case>
+  <Case type="In">
+    <X>3</X>
+    <Y>4</Y>
+  </Case>
+  <Case type="In">
+    <X>3</X>
+    <Y>5</Y>
+  </Case>
+  <Case type="Out">
+    <X>3</X>
+    <Y>6</Y>
+  </Case>
+  <Case type="Out">
+    <X>4</X>
+    <Y>0</Y>
+  </Case>
+  <Case type="In">
+    <X>4</X>
+    <Y>1</Y>
+  </Case>
+  <Case type="In">
+    <X>4</X>
+    <Y>2</Y>
+  </Case>
+  <Case type="Rocher">
+    <X>4</X>
+    <Y>3</Y>
+  </Case>
+  <Case type="In">
+    <X>4</X>
+    <Y>4</Y>
+  </Case>
+  <Case type="In">
+    <X>4</X>
+    <Y>5</Y>
+  </Case>
+  <Case type="Out">
+    <X>4</X>
+    <Y>6</Y>
+  </Case>
+  <Case type="Out">
+    <X>5</X>
+    <Y>0</Y>
+  </Case>
+  <Case type="In">
+    <X>5</X>
+    <Y>1</Y>
+  </Case>
+  <Case type="In">
+    <X>5</X>
+    <Y>2</Y>
+  </Case>
+  <Case type="In">
+    <X>5</X>
+    <Y>3</Y>
+  </Case>
+  <Case type="In">
+    <X>5</X>
+    <Y>4</Y>
+  </Case>
+  <Case type="In">
+    <X>5</X>
+    <Y>5</Y>
+  </Case>
+  <Case type="Out">
+    <X>5</X>
+    <Y>6</Y>
+  </Case>
+  <Case type="Out">
+    <X>6</X>
+    <Y>0</Y>
+  </Case>
+  <Case type="Out">
+    <X>6</X>
+    <Y>1</Y>
+  </Case>
+  <Case type="Out">
+    <X>6</X>
+    <Y>2</Y>
+  </Case>
+  <Case type="Out">
+    <X>6</X>
+    <Y>3</Y>
+  </Case>
+  <Case type="Out">
+    <X>6</X>
+    <Y>4</Y>
+  </Case>
+  <Case type="Out">
+    <X>6</X>
+    <Y>5</Y>
+  </Case>
+  <Case type="Out">
+    <X>6</X>
+    <Y>6</Y>
+  </Case>
+</Plateau>
