@@ -10,5 +10,4 @@ public class Out extends Jeton {
 		// TODO Auto-generated method stub
 		return 0;
 	}
-
 }

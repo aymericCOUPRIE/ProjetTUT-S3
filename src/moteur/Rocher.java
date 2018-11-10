@@ -6,6 +6,7 @@ public class Rocher extends Jeton {
 	public Rocher(String nom) {
 		this.nom = nom;
 	}
+	
 
 	@Override
 	public String toString() {

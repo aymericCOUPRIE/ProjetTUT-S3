@@ -38,6 +38,7 @@ public class Joueur {
 			return unPion;
 		}
 	}
+	
 
 	public Pion pionDeplacer() {
 		return lesPionsSurPlateau.get(0);

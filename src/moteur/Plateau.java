@@ -146,6 +146,7 @@ public class Plateau {
 					break;
 				}
 			}
+			
 			if (deplacementPossible(contreAttaque)) {
 				pousserNord(unJeton, x, i - 1);
 			}

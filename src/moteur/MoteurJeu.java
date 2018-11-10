@@ -30,6 +30,7 @@ public class MoteurJeu {
 			lePlateau.afficherPlateau();
 		}
 	}
+	
 
 	public void unTour(Joueur joueur) {
 		System.out.println("\n"

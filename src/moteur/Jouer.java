@@ -16,6 +16,7 @@ public class Jouer {
 //		unPlateau.afficherPlateau();
 //		
 //		System.out.println("\n\n");
+		
 //		//unPlateau.deplacement(elephant,Orientation.NORD);
 //		//unPlateau.deplacement(rhinoceros2, Orientation.SUD);
 //		//unPlateau.deplacement(rhinoceros2, Orientation.SUD);
