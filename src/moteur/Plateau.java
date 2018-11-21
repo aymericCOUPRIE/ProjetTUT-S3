@@ -227,6 +227,7 @@ public class Plateau {
 			int i = y;
 			i++;
 			while (i < taillePlateau+1) {
+				
 				if (plateau[x][i] != null) {
 					contreAttaque += plateau[x][i].veriforientation(directionDeplacement);
 					i++;
@@ -319,8 +320,8 @@ public class Plateau {
 
 	public int[] recherchePosition(Jeton unJeton) {
 		int[] coordonne = new int[2];
-		for (int x = 0; x < taillePlateau; x++) {
-			for (int y = 0; y < taillePlateau; y++) {
+		for (int x = 0; x < taillePlateau+2; x++) {
+			for (int y = 0; y < taillePlateau+2; y++) {
 				if (plateau[x][y] == unJeton) {
 					coordonne[0] = x;
 					coordonne[1] = y;

@@ -10,4 +10,10 @@ public class Out extends Jeton {
 		// TODO Auto-generated method stub
 		return 0;
 	}
+	@Override
+	public String toString() {
+		return "je suis un OUT";
+	}
+	
+	
 }

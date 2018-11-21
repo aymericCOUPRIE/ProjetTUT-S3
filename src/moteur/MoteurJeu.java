@@ -34,7 +34,7 @@ public class MoteurJeu {
 
 	public void unTour(Joueur joueur) {
 		System.out.println("\n"
-				+ ""+joueur.getNom()+" 1 pour ajouter un Pion 2 pour déplacer un Pion");
+				+ ""+joueur.getNom()+": 1 pour ajouter un Pion 2 pour déplacer un Pion");
 		Scanner sc = new Scanner(System.in);
 		int reponse = sc.nextInt();
 		if (reponse == 1) {
