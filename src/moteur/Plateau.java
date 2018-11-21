@@ -72,13 +72,13 @@ public class Plateau {
 			if(x==0) {
 				plateau[x][y+1]=unJeton;
 				deplacement(unJeton, Orientation.EST);
-			}else if(x==taillePlateau) {
+			}else if(x==taillePlateau-1) {
 				plateau[x+2][y+1]=unJeton;
 				deplacement(unJeton, Orientation.OUEST);
 			}else if(y==0) {
 				plateau[x+1][y]=unJeton;
 				deplacement(unJeton, Orientation.NORD);
-			}else if(y==taillePlateau) {
+			}else if(y==taillePlateau-1) {
 				plateau[x+1][y+2]=unJeton;
 				deplacement(unJeton, Orientation.SUD);
 			}else {
