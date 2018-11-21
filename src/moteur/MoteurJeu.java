@@ -2,6 +2,8 @@ package moteur;
 
 import java.util.Scanner;
 
+import javax.swing.UnsupportedLookAndFeelException;
+
 public class MoteurJeu {
 
 	Plateau lePlateau;
@@ -30,11 +32,9 @@ public class MoteurJeu {
 			lePlateau.afficherPlateauVisionJoueur();
 		}
 	}
-	
 
 	public void unTour(Joueur joueur) {
-		System.out.println("\n"
-				+ ""+joueur.getNom()+": 1 pour ajouter un Pion 2 pour déplacer un Pion");
+		System.out.println("\n" + "" + joueur.getNom() + ": 1 pour ajouter un Pion 2 pour déplacer un Pion");
 		Scanner sc = new Scanner(System.in);
 		int reponse = sc.nextInt();
 		if (reponse == 1) {
@@ -64,16 +64,25 @@ public class MoteurJeu {
 		System.out.println("y = ");
 		y = sca.nextInt();
 		unJoueur.setRegardProchainPion(choisirRegard());
-		lePlateau.ajouterPion(unJoueur.posserPionPlateau(), x, y);
+		if (lePlateau.verifCoin(x, y)) {
+			lePlateau.ajouterPionCoin(unJoueur.posserPionPlateau(), x, y, choisirPousser());
+		} else {
+			lePlateau.ajouterPion(unJoueur.posserPionPlateau(), x, y);
+		}
 	}
-	
+
 	public Orientation choisirDirection() {
 		System.out.println("Vers ou voulez vous vous déplacer votre pion 1=Nord, 2=Sud, 3=Est, 4=Ouest");
 		return choisirOrientation();
 	}
-	
+
 	public Orientation choisirRegard() {
 		System.out.println("Vers ou voulez vous que regard votre pion 1=Nord, 2=Sud, 3=Est, 4=Ouest");
+		return choisirOrientation();
+	}
+
+	public Orientation choisirPousser() {
+		System.out.println("Vers ou voulez vous poussez en entrain 1=Nord, 2=Sud, 3=Est, 4=Ouest");
 		return choisirOrientation();
 	}
 
@@ -99,21 +108,21 @@ public class MoteurJeu {
 //		lePlateau.deplacement(unJoueur.pionDeplacer(), choisirOrientation());
 //
 //	}
-	
+
 	public void deplacerPion(Joueur joueur) {
 		Scanner sca = new Scanner(System.in);
 		System.out.println("Quelle coordonne pour le pion ?");
 		System.out.println("x = ");
 		int x = sca.nextInt();
 		System.out.println("y = ");
-		int y = sca.nextInt();	
-		Pion pion =lePlateau.recuperePion(x, y);
+		int y = sca.nextInt();
+		Pion pion = lePlateau.recuperePion(x, y);
 		if (pion == null) {
 			System.out.println("il n'y pas de pion a cette position ");
 			deplacerPion(joueur);
-		}else {
+		} else {
 			boolean peutPasFaireRotation = lePlateau.deplacement(pion, choisirDirection());
-			if(!peutPasFaireRotation) {
+			if (!peutPasFaireRotation) {
 				pion.setRegard(choisirRegard());
 			}
 		}

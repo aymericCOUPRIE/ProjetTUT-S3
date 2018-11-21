@@ -66,6 +66,28 @@ public class Plateau {
 	//pour ajouter un pion on doit le mettre au coordoner que le joueur voie
 	
 	//on est obligé de mettre le pion sur un extérieur du plateau car sinon il y auras une erreur
+	public void ajouterPionCoin(Jeton unJeton, int x, int y,Orientation orientation) {
+		if(x<taillePlateau || y<taillePlateau) {
+			if(x==0) {
+				plateau[x][y+1]=unJeton;
+				deplacement(unJeton, orientation);
+			}else if(x==taillePlateau-1) {
+				plateau[x+2][y+1]=unJeton;
+				deplacement(unJeton, orientation);
+			}else if(y==0) {
+				plateau[x+1][y]=unJeton;
+				deplacement(unJeton, orientation);
+			}else if(y==taillePlateau-1) {
+				plateau[x+1][y+2]=unJeton;
+				deplacement(unJeton, orientation);
+			}else {
+				System.err.println("Vous devez placer votre pion sur le rebord du plateau");
+			}
+			
+		}else {
+			System.err.println("Vous devez placer votre pion dans le plateau");
+		}
+	}
 	
 	public void ajouterPion(Jeton unJeton, int x, int y) {
 		if(x<taillePlateau || y<taillePlateau) {
@@ -88,6 +110,17 @@ public class Plateau {
 		}else {
 			System.err.println("Vous devez placer votre pion dans le plateau");
 		}
+	}
+	
+	public boolean verifCoin( int x, int y) {
+		if((x==0)||(x==taillePlateau-1)){
+			if((y==0)||(y==taillePlateau-1)) {
+				if(plateau[x+1][y+1]!=null) {
+					return true;					
+				}
+			}
+		}
+		return false;
 	}
 	
 
