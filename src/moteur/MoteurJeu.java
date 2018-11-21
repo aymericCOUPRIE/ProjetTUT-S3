@@ -112,10 +112,12 @@ public class MoteurJeu {
 			System.out.println("il n'y pas de pion a cette position ");
 			deplacerPion(joueur);
 		}else {
-			lePlateau.deplacement(pion, choisirDirection());
+			boolean peutPasFaireRotation = lePlateau.deplacement(pion, choisirDirection());
+			if(!peutPasFaireRotation) {
+				pion.setRegard(choisirRegard());
+			}
 		}
 	}
-	
 
 	public void gagner() {
 		fin = true;

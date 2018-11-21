@@ -163,7 +163,7 @@ public class Plateau {
 		// Variable qui vas servir a vérifier si le déplacment est possible
 		int contreAttaque = 1;
 		// Si le pion a deplacer des pion la cariable passe a true
-		boolean aPousser = false;
+		int aPousser = 0;
 
 		// deplacemnt vers le nord
 		if (directionDeplacement == Orientation.EST) {
@@ -180,6 +180,7 @@ public class Plateau {
 				} else {
 					break;
 				}
+				aPousser++;
 			}
 			// vérification si la contre attaque permet le déplacement
 			// si elle est inférieur à 0 c'est impossible
@@ -198,6 +199,7 @@ public class Plateau {
 				} else {
 					break;
 				}
+				aPousser++;
 			}
 			if (deplacementPossible(contreAttaque)) {
 				pousserOuest(unJeton, i + 1, y);
@@ -214,6 +216,7 @@ public class Plateau {
 				} else {
 					break;
 				}
+				aPousser++;
 			}
 			if (deplacementPossible(contreAttaque)) {
 				pousserSud(unJeton, x, i + 1);
@@ -230,13 +233,18 @@ public class Plateau {
 				} else {
 					break;
 				}
+				aPousser++;
 			}
 			if (deplacementPossible(contreAttaque)) {
 				pousserNord(unJeton, x, i - 1);
 			}
 		}
 		suppresionPionDehors();
-		return aPousser;
+		if(aPousser==0) {
+			return false;
+		}else {
+			return true;
+		}
 	}
 
 // fonction pousser
