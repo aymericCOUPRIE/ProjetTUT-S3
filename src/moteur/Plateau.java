@@ -31,9 +31,9 @@ public class Plateau {
 		this.taillePlateau = taillePlateau;
 		remplissageOut();
 	}
-	public Plateau () throws ParserConfigurationException, SAXException, IOException {
-		load("data/plateauX.xml");
-	}
+//	public Plateau () throws ParserConfigurationException, SAXException, IOException {
+//		load("data/plateauX.xml");
+//	}
 
 	public void remplissageOut() {
 		for (int i = 0; i < taillePlateau + 2; i++) {
@@ -52,23 +52,61 @@ public class Plateau {
 		plateau[x][y] = unRocher;
 	}
 
-	public void ajouterPion(Jeton unJeton, int x, int y, Orientation uneOrientation) {
+//	public void ajouterPion(Jeton unJeton, int x, int y, Orientation uneOrientation) {
+//	
+//		if (x == 0 || y == 0 || x == taillePlateau + 1 || y == taillePlateau - 1) {
+//			plateau[x][y] = unJeton;
+//			deplacement(unJeton, uneOrientation);
+//		} else {
+//			System.err.println("le pion n'est pas placé a l'extérieur du plateau");
+//		}
+//
+//	}
 	
-		if (x == 0 || y == 0 || x == taillePlateau + 1 || y == taillePlateau - 1) {
-			plateau[x][y] = unJeton;
-			deplacement(unJeton, uneOrientation);
-		} else {
-			System.err.println("le pion n'est pas placé a l'extérieur du plateau");
+	//pour ajouter un pion on doit le mettre au coordoner que le joueur voie
+	
+	//on est obligé de mettre le pion sur un extérieur du plateau car sinon il y auras une erreur
+	
+	public void ajouterPion(Jeton unJeton, int x, int y) {
+		if(x<taillePlateau || y<taillePlateau) {
+			if(x==0) {
+				plateau[x][y+1]=unJeton;
+				deplacement(unJeton, Orientation.EST);
+			}else if(x==taillePlateau) {
+				plateau[x+2][y+1]=unJeton;
+				deplacement(unJeton, Orientation.OUEST);
+			}else if(y==0) {
+				plateau[x+1][y]=unJeton;
+				deplacement(unJeton, Orientation.NORD);
+			}else if(y==taillePlateau) {
+				plateau[x+1][y+2]=unJeton;
+				deplacement(unJeton, Orientation.SUD);
+			}else {
+				System.err.println("Vous devez placer votre pion sur le rebord du plateau");
+			}
+			
+		}else {
+			System.err.println("Vous devez placer votre pion dans le plateau");
 		}
-
 	}
+	
 
-	public void afficherPlateau() {
+	public void afficherPlateauVisionDev() {
 		System.out.println("\n\nVoici le plateau :");
 		for (int i = 0; i < taillePlateau + 2; i++) {
 			for (int j = 0; j < taillePlateau + 2; j++) {
 				if (plateau[i][j] != null && !(plateau[i][j] instanceof Out)) {
 					System.out.println(plateau[i][j] + " à la position " + i + " " + j);
+				}
+			}
+		}
+	}
+	public void afficherPlateauVisionJoueur() {
+		System.out.println("\n\nVoici le plateau :");
+		for (int i = 1; i < taillePlateau + 1; i++) {
+			for (int j = 1; j < taillePlateau + 1; j++) {
+				if (plateau[i][j] != null && !(plateau[i][j] instanceof Out)) {
+					System.out.println(plateau[i][j] + " à la position " + (i-1) + " " + (j-1));
 				}
 			}
 		}
@@ -88,6 +126,14 @@ public class Plateau {
 			}
 		}
 	}
+	
+	//Fonction qui sert pour le déplacement d'un pion en récupérant le pion sur le plateau si il existe
+	public Pion recuperePion(int x,int y) {
+		if(plateau[x+1][y+1] instanceof Pion) {
+			return (Pion) plateau[x+1][y+1];
+		}		
+		return null;
+	}
 
 	public void suppresionPionDehors() {
 		for (int i = 0; i < taillePlateau + 2; i++) {
@@ -106,8 +152,10 @@ public class Plateau {
 		}
 		remplissageOut();
 	}
-
-	public void deplacement(Jeton unJeton, Orientation directionDeplacement) {
+	
+	
+	// cette fonction est un boolean qui retourn true si il y a eu un deplacement et false sinon
+	public boolean deplacement(Jeton unJeton, Orientation directionDeplacement) {
 		pionARecupere = null;
 		// On recupere les coordonne du jeton
 		int[] coordonne = recherchePosition(unJeton);
@@ -277,90 +325,89 @@ public class Plateau {
 	// Sauvegarde des plateaux dans un fichier XML
 		// filename : nom du fichier
 		// comment : commentaire
-	public void save(String filename, String comment) throws ParserConfigurationException {
-		// On crée un nouveau Document JDOM
-		Document document = new Document();
-
-		// on set la racine du document avec l'élément meilleurScore
-		Element racine = new Element("Plateau");
-		document.setRootElement(racine);
-		
-		Attribute taille = new Attribute ("taille",""+taillePlateau);
-		racine.setAttribute(taille);
-
-		for (int x = 0; x < taillePlateau+2; x++) {
-			for (int y = 0; y < taillePlateau+2; y++) {
-			// on récupère les scores stockés dans la liste pour les enregister .
-
-			Element uneCase = new Element("Case");// balise score
-			racine.addContent(uneCase);
-			
-			if (plateau[x][y] instanceof Out) {
-				Attribute type1 = new Attribute("type","Out");
-			    uneCase.setAttribute(type1);
-			}else if(plateau[x][y] instanceof Rocher) {
-				Attribute type2 = new Attribute("type","Rocher");
-			    uneCase.setAttribute(type2);
-			}else{
-				Attribute type3 = new Attribute("type","In");
-			    uneCase.setAttribute(type3);
-			}
-			
-		      
-			Element horizontale = new Element("X");// balise valeur du score (nb de tentative)
-			uneCase.addContent(horizontale);
-			horizontale.setText(""+x);// on remplis les elements(balises) avec le contenu de la
-															// liste
-
-			Element verticale = new Element("Y");// balise pour savoir qui la réalisé
-			uneCase.addContent(verticale);
-			verticale.setText(""+y);
-			
-
-			}
-		}
-
-		try
-
-		{
-			XMLOutputter sortie = new XMLOutputter(Format.getPrettyFormat());
-			sortie.output(document, new FileWriter(filename));
-		} catch (IOException e) {
-		}
-	}
-	// Chargement des plateaux depuis un fichier XML
-		// filename : nom du fichier
-		public void load(String filename) throws ParserConfigurationException, SAXException, IOException {
-			// permet la création d'un fichier pour extraire les données du fichier xml
-			DocumentBuilderFactory builderFactory = DocumentBuilderFactory.newInstance();
-			DocumentBuilder documentBuilder = builderFactory.newDocumentBuilder();
-			org.w3c.dom.Document domDocument = documentBuilder.parse(filename);
-			DOMBuilder domBuilder = new DOMBuilder();
-			Document doc = domBuilder.build(domDocument);
-
-			// Element racine = doc.getRootElement();
-			// on recupère les fils de case a patir de la racine plateau
-			List<Element> attribElments = doc.getRootElement().getChildren("Case");
-			this.taillePlateau = Integer.parseInt(doc.getRootElement().getAttributeValue("taille")) ;
-			plateau = new Jeton[taillePlateau +2][taillePlateau+2];
-			// pour chaque case du fichier xml on écrit la case avec un x , un y et en focntion de ses attribut in , out , rien 
-			for (Element uneCase : attribElments) {
-				int x = Integer.parseInt(uneCase.getChildText("X")); 
-					int y = Integer.parseInt(uneCase.getChildText("Y")); 
-				if (uneCase.getAttributeValue("type").equals("Out")) {
-					plateau [x][y] = new Out();
-				}else if (uneCase.getAttributeValue("type").equals("In")){
-					plateau [x][y] = null;
-				}else if (uneCase.getAttributeValue("type").equals("Rocher")) {
-					int id = 1 ;
-					Rocher unRocher = new Rocher("cailloux "+id);
-					ajouterRocher(unRocher, x ,y);
-					id++;
-				
-				}
-			}
-
-		}
-	
-	
+//	public void save(String filename, String comment) throws ParserConfigurationException {
+//		// On crée un nouveau Document JDOM
+//		Document document = new Document();
+//
+//		// on set la racine du document avec l'élément meilleurScore
+//		Element racine = new Element("Plateau");
+//		document.setRootElement(racine);
+//		
+//		Attribute taille = new Attribute ("taille",""+taillePlateau);
+//		racine.setAttribute(taille);
+//
+//		for (int x = 0; x < taillePlateau+2; x++) {
+//			for (int y = 0; y < taillePlateau+2; y++) {
+//
+//			Element uneCase = new Element("Case");
+//			racine.addContent(uneCase);
+//			
+//			if (plateau[x][y] instanceof Out) {
+//				Attribute type1 = new Attribute("type","Out");
+//			    uneCase.setAttribute(type1);
+//			}else if(plateau[x][y] instanceof Rocher) {
+//				Attribute type2 = new Attribute("type","Rocher");
+//			    uneCase.setAttribute(type2);
+//			}else{
+//				Attribute type3 = new Attribute("type","In");
+//			    uneCase.setAttribute(type3);
+//			}
+//			
+//		      
+//			Element horizontale = new Element("X");// balise valeur du score (nb de tentative)
+//			uneCase.addContent(horizontale);
+//			horizontale.setText(""+x);// on remplis les elements(balises) avec le contenu de la
+//															// liste
+//
+//			Element verticale = new Element("Y");// balise pour savoir qui la réalisé
+//			uneCase.addContent(verticale);
+//			verticale.setText(""+y);
+//			
+//
+//			}
+//		}
+//
+//		try
+//
+//		{
+//			XMLOutputter sortie = new XMLOutputter(Format.getPrettyFormat());
+//			sortie.output(document, new FileWriter(filename));
+//		} catch (IOException e) {
+//		}
+//	}
+//	// Chargement des plateaux depuis un fichier XML
+//		// filename : nom du fichier
+//		public void load(String filename) throws ParserConfigurationException, SAXException, IOException {
+//			// permet la création d'un fichier pour extraire les données du fichier xml
+//			DocumentBuilderFactory builderFactory = DocumentBuilderFactory.newInstance();
+//			DocumentBuilder documentBuilder = builderFactory.newDocumentBuilder();
+//			org.w3c.dom.Document domDocument = documentBuilder.parse(filename);
+//			DOMBuilder domBuilder = new DOMBuilder();
+//			Document doc = domBuilder.build(domDocument);
+//
+//			// Element racine = doc.getRootElement();
+//			// on recupère les fils de case a patir de la racine plateau
+//			List<Element> attribElments = doc.getRootElement().getChildren("Case");
+//			this.taillePlateau = Integer.parseInt(doc.getRootElement().getAttributeValue("taille")) ;
+//			plateau = new Jeton[taillePlateau +2][taillePlateau+2];
+//			// pour chaque case du fichier xml on écrit la case avec un x , un y et en focntion de ses attribut in , out , rien 
+//			for (Element uneCase : attribElments) {
+//				int x = Integer.parseInt(uneCase.getChildText("X")); 
+//					int y = Integer.parseInt(uneCase.getChildText("Y")); 
+//				if (uneCase.getAttributeValue("type").equals("Out")) {
+//					plateau [x][y] = new Out();
+//				}else if (uneCase.getAttributeValue("type").equals("In")){
+//					plateau [x][y] = null;
+//				}else if (uneCase.getAttributeValue("type").equals("Rocher")) {
+//					int id = 1 ;
+//					Rocher unRocher = new Rocher("cailloux "+id);
+//					ajouterRocher(unRocher, x ,y);
+//					id++;
+//				
+//				}
+//			}
+//
+//		}
+//	
+//	
 }

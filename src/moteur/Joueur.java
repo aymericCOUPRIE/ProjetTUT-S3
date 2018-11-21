@@ -38,7 +38,10 @@ public class Joueur {
 			return unPion;
 		}
 	}
-	
+	public void setRegardProchainPion(Orientation orient) {
+		lesPionsEnMain.get(0).setRegard(orient);;
+		
+	}
 
 	public Pion pionDeplacer() {
 		return lesPionsSurPlateau.get(0);

@@ -27,7 +27,7 @@ public class MoteurJeu {
 				tour = false;
 				unTour(joueur2);
 			}
-			lePlateau.afficherPlateau();
+			lePlateau.afficherPlateauVisionJoueur();
 		}
 	}
 	
@@ -63,11 +63,21 @@ public class MoteurJeu {
 		x = sca.nextInt();
 		System.out.println("y = ");
 		y = sca.nextInt();
-		lePlateau.ajouterPion(unJoueur.posserPionPlateau(), x, y, choisirOrientation());
+		unJoueur.setRegardProchainPion(choisirRegard());
+		lePlateau.ajouterPion(unJoueur.posserPionPlateau(), x, y);
+	}
+	
+	public Orientation choisirDirection() {
+		System.out.println("Vers ou voulez vous vous déplacer votre pion 1=Nord, 2=Sud, 3=Est, 4=Ouest");
+		return choisirOrientation();
+	}
+	
+	public Orientation choisirRegard() {
+		System.out.println("Vers ou voulez vous que regard votre pion 1=Nord, 2=Sud, 3=Est, 4=Ouest");
+		return choisirOrientation();
 	}
 
 	public Orientation choisirOrientation() {
-		System.out.println("Quelle orientation 1=Nord, 2=Sud, 3=Est, 4=Ouest");
 		Scanner sca = new Scanner(System.in);
 		int resultat = sca.nextInt();
 		switch (resultat) {
@@ -85,9 +95,25 @@ public class MoteurJeu {
 		}
 	}
 
-	public void deplacerPion(Joueur unJoueur) {
-		lePlateau.deplacement(unJoueur.pionDeplacer(), choisirOrientation());
-
+//	public void deplacerPion(Joueur unJoueur) {
+//		lePlateau.deplacement(unJoueur.pionDeplacer(), choisirOrientation());
+//
+//	}
+	
+	public void deplacerPion(Joueur joueur) {
+		Scanner sca = new Scanner(System.in);
+		System.out.println("Quelle coordonne pour le pion ?");
+		System.out.println("x = ");
+		int x = sca.nextInt();
+		System.out.println("y = ");
+		int y = sca.nextInt();	
+		Pion pion =lePlateau.recuperePion(x, y);
+		if (pion == null) {
+			System.out.println("il n'y pas de pion a cette position ");
+			deplacerPion(joueur);
+		}else {
+			lePlateau.deplacement(pion, choisirDirection());
+		}
 	}
 
 	public void gagner() {

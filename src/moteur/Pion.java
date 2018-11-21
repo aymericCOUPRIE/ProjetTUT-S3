@@ -33,4 +33,9 @@ public class Pion extends Jeton {
 		return nom;
 	}
 
+	public void setRegard(Orientation regard) {
+		this.regard = regard;
+	}
+	
+
 }
