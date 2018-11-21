@@ -115,6 +115,7 @@ public class MoteurJeu {
 			lePlateau.deplacement(pion, choisirDirection());
 		}
 	}
+	
 
 	public void gagner() {
 		fin = true;

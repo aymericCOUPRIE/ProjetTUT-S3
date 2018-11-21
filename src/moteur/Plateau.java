@@ -162,6 +162,8 @@ public class Plateau {
 		int x = coordonne[0], y = coordonne[1];
 		// Variable qui vas servir a vérifier si le déplacment est possible
 		int contreAttaque = 1;
+		// Si le pion a deplacer des pion la cariable passe a true
+		boolean aPousser = false;
 
 		// deplacemnt vers le nord
 		if (directionDeplacement == Orientation.EST) {
@@ -226,16 +228,15 @@ public class Plateau {
 					contreAttaque += plateau[x][i].veriforientation(directionDeplacement);
 					i++;
 				} else {
-
 					break;
 				}
 			}
-			
 			if (deplacementPossible(contreAttaque)) {
 				pousserNord(unJeton, x, i - 1);
 			}
 		}
 		suppresionPionDehors();
+		return aPousser;
 	}
 
 // fonction pousser
