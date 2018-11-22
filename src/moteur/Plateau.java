@@ -68,21 +68,63 @@ public class Plateau {
 	//on est obligé de mettre le pion sur un extérieur du plateau car sinon il y auras une erreur
 	public void ajouterPionCoin(Jeton unJeton, int x, int y,Orientation orientation) {
 		if(x<taillePlateau || y<taillePlateau) {
-			if(x==0) {
-				plateau[x][y+1]=unJeton;
-				deplacement(unJeton, orientation);
-			}else if(x==taillePlateau-1) {
-				plateau[x+2][y+1]=unJeton;
-				deplacement(unJeton, orientation);
-			}else if(y==0) {
-				plateau[x+1][y]=unJeton;
-				deplacement(unJeton, orientation);
-			}else if(y==taillePlateau-1) {
-				plateau[x+1][y+2]=unJeton;
-				deplacement(unJeton, orientation);
+			if((x==0)&&(y==0)) {
+				if(orientation == Orientation.NORD) {
+					plateau[x+1][y]=unJeton;
+					deplacement(unJeton, orientation);
+				}else if(orientation == Orientation.EST){
+					plateau[x][y+1]=unJeton;
+					deplacement(unJeton, orientation);
+				}else {
+					System.err.println("Vous ne pouvez pas ajouter votre pion car vous n'etes pas dans le bon sens");
+				}
+			}else if((x==0)&&(y==taillePlateau-1)) {
+				if(orientation == Orientation.SUD) {
+					plateau[x+1][y+2]=unJeton;
+					deplacement(unJeton, orientation);
+				}else if(orientation == Orientation.EST){
+					plateau[x][y+1]=unJeton;
+					deplacement(unJeton, orientation);
+				}else {
+					System.err.println("Vous ne pouvez pas ajouter votre pion car vous n'etes pas dans le bon sens");
+				}
+			}else if((x==taillePlateau-1)&&(y==0)) {
+				if(orientation == Orientation.NORD) {
+					plateau[x+1][y]=unJeton;
+					deplacement(unJeton, orientation);
+				}else if(orientation == Orientation.OUEST){
+					plateau[x+2][y+1]=unJeton;
+					deplacement(unJeton, orientation);
+				}else {
+					System.err.println("Vous ne pouvez pas ajouter votre pion car vous n'etes pas dans le bon sens");
+				}
+			}else if((x==taillePlateau-1)&&(y==taillePlateau-1)) {
+				if(orientation == Orientation.SUD) {
+					plateau[x+1][y+2]=unJeton;
+					deplacement(unJeton, orientation);
+				}else if(orientation == Orientation.OUEST){
+					plateau[x+2][y+1]=unJeton;
+					deplacement(unJeton, orientation);
+				}else {
+					System.err.println("Vous ne pouvez pas ajouter votre pion car vous n'etes pas dans le bon sens");
+				}
 			}else {
-				System.err.println("Vous devez placer votre pion sur le rebord du plateau");
+				System.err.println("Erreur ajout pion dans un coin ");
 			}
+//			if(x==0) {
+//				
+//			}else if(x==taillePlateau-1) {
+//				plateau[x+2][y+1]=unJeton;
+//				deplacement(unJeton, orientation);
+//			}else if(y==0) {
+//				plateau[x+1][y]=unJeton;
+//				deplacement(unJeton, orientation);
+//			}else if(y==taillePlateau-1) {
+//				plateau[x+1][y+2]=unJeton;
+//				deplacement(unJeton, orientation);
+//			}else {
+//				System.err.println("Vous devez placer votre pion sur le rebord du plateau");
+//			}
 			
 		}else {
 			System.err.println("Vous devez placer votre pion dans le plateau");
